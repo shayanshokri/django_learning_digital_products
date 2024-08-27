@@ -15,3 +15,21 @@ class Category(models.Model):
         db_table = 'categories'
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
+
+
+class Product(models.Model):
+    category = models.ManyToManyField('Category', verbose_name=_('Category'), blank=True)
+    title = models.CharField(verbose_name=_('Title'), max_length=50)
+    description = models.TextField(verbose_name=_('Description'), blank=True)
+    avatar = models.ImageField(verbose_name=_('Avatar'), blank=True, upload_to='categories')
+    active = models.BooleanField(verbose_name=_('Active'), default=True)
+    created_time = models.DateTimeField(verbose_name=_('Created Time'), auto_now_add=True)
+    updated_time = models.DateTimeField(verbose_name=_('Updated Time'), auto_now=True)
+
+    class Meta:
+        db_table = 'products'
+        verbose_name = _('Product')
+        verbose_name_plural = _('Products')
+
+
+
